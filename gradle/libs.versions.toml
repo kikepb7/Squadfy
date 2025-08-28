@@ -28,6 +28,7 @@ lottieVersion = "6.6.7"
 kotlinSerialization = "2.2.10"
 crashlyticsVersion = "3.0.6"
 googleFirebase = "34.1.0"
+material = "1.12.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -71,6 +72,7 @@ coil-network-ktor = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", 
 
 shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shimmerVersion" }
 lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottieVersion" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -83,3 +85,4 @@ jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serializati
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServicesVersion" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsVersion" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
