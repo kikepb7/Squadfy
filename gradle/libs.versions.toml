@@ -12,9 +12,22 @@ androidx-testExt = "1.2.1"
 composeMultiplatform = "1.8.2"
 junit = "4.13.2"
 kotlin = "2.2.0"
-koinCore = "4.1.0"
-gservices = "4.4.3"
-firebase = "33.5.1"
+kspVersion = "2.0.20-1.0.24"
+koinCoreVersion = "4.1.0"
+googleServicesVersion = "4.4.3"
+firebaseVersion = "33.5.1"
+googleAuthVersion = "21.4.0"
+firebaseAuthKtx = "23.2.1"
+navigationVersion = "2.8.0-alpha13"
+nav3Core = "1.0.0-alpha08"
+nav3Lifecycle = "1.0.0-alpha04"
+kotlinxSerializationCoreVersion = "1.9.0"
+coilVersion = "3.3.0"
+shimmerVersion = "0.5.0"
+lottieVersion = "6.6.7"
+kotlinSerialization = "2.2.10"
+crashlyticsVersion = "3.0.6"
+googleFirebase = "34.1.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -27,15 +40,37 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCore" }
-koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinCore" }
-koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCore" }
-koin-compose-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation", version.ref = "koinCore" }
-koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCoreVersion" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinCoreVersion" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCoreVersion" }
+koin-compose-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation", version.ref = "koinCoreVersion" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCoreVersion" }
 
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseVersion" }
 firebase-auth = { module = "com.google.firebase:firebase-auth-ktx" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-database = { module = "com.google.firebase:firebase-database-ktx" }
+firebase-google = { module = "com.google.android.gms:play-services-auth"}
+firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }
+firebase-notifications = { module = "com.google.firebase:firebase-messaging-ktx" }
+firebase-firestore = { module = "com.google.firebase:firebase-firestore-ktx" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationVersion" }
+
+
+nav3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+nav3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+androidx-lifecycle-viewmodel-nav3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "nav3Lifecycle" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCoreVersion" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationCoreVersion" }
+
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilVersion" }
+coil-network-ktor = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coilVersion" }
+
+shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shimmerVersion" }
+lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottieVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -43,5 +78,8 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-google-services = { id = "com.google.gms.google-services", version.ref = "gservices" }
+kspCompose = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServicesVersion" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsVersion" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
