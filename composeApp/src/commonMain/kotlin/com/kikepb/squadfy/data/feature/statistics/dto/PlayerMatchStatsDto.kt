@@ -2,7 +2,7 @@ package com.kikepb.squadfy.data.feature.statistics.dto
 
 data class PlayerMatchStatsDto(
     val id: String? = "",
-    val playerId: String,
+    val userId: String,
     val matchId: String,
     val clubId: String? = null,
     val goals: Int = 0,

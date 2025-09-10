@@ -1,4 +1,4 @@
-package com.kikepb.squadfy.data.auth
+package com.kikepb.squadfy.data.feature.firebase.auth
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
-class AuthRepositoryAndroidImpl : AuthRepository {
+class AuthRepositoryAndroidImpl(): AuthRepository {
     private val auth = Firebase.auth
 
     override val authState: Flow<AuthUserModel?> = callbackFlow {
@@ -40,31 +40,20 @@ class AuthRepositoryAndroidImpl : AuthRepository {
         }.getOrElse {
             Either.Error(FailureModel.AuthError(code = AuthErrorCode.UNKNOWN_AUTH_ERROR, message = it.message.toString()))
         }
-/*    catch (e: Exception) {
-            Either.Error(FailureModel.GenericError(e.message ?: "Error desconocido"))
-        }*/
-//        runCatching {
-//            auth.createUserWithEmailAndPassword(email, password).await()
-//            val user = auth.currentUser ?: error("Usuario no encontrado")
-//
-//                AuthResult.Success(
-//                    user = AuthUser(
-//                        uid = user.uid,
-//                        email = user.email
-//                    )
-//                )
-//        }.getOrElse {
-//            AuthResult.Error(
-//                    message = it.message.orEmpty(),
-//                cause = it
-//                )
 
-    override suspend fun registerWithEmailAndPassword(
-        email: String,
-        password: String,
-        userModel: UserModel
-    ): Either<FailureModel, String> {
-        TODO("Not yet implemented")
+    override suspend fun registerWithEmailAndPassword(email: String, password: String, userModel: UserModel): Either<FailureModel, String> {
+        return try {
+            val result = auth.createUserWithEmailAndPassword(email, password).await()
+            val user = result.user
+            if (user != null) {
+                user.sendEmailVerification().await()
+                Either.Success(user.uid)
+            } else {
+                Either.Error(FailureModel.AuthError(AuthErrorCode.UNKNOWN_AUTH_ERROR, "Registro fallido"))
+            }
+        } catch (e: Exception) {
+            Either.Error(FailureModel.GenericError(e.localizedMessage ?: "Error inesperado"))
+        }
     }
 
     override suspend fun logout() = auth.signOut()

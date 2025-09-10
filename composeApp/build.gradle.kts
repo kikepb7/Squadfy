@@ -138,6 +138,11 @@ kotlin {
 
         pod("FirebaseCore") { extraOpts += listOf("-compiler-option", "-fmodules") }
         pod("FirebaseAuth") { extraOpts += listOf("-compiler-option", "-fmodules") }
+        pod("FirebaseFirestore") { extraOpts += listOf("-compiler-option", "-fmodules") }
+        pod("FirebaseDatabase") { extraOpts += listOf("-compiler-option", "-fmodules") }
+        pod("FirebaseStorage") { extraOpts += listOf("-compiler-option", "-fmodules") }
+        pod("FirebaseAnalytics") { extraOpts += listOf("-compiler-option", "-fmodules") }
+//        pod("FirebaseCrashlytics") { extraOpts += listOf("-compiler-option", "-fmodules") }
     }
 }
 

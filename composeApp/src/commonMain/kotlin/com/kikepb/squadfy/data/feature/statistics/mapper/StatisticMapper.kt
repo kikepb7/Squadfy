@@ -6,7 +6,7 @@ import com.kikepb.squadfy.domain.feature.statistics.model.PlayerStatisticModel
 fun PlayerMatchStatsDto.toStatisticModel(): PlayerStatisticModel =
     PlayerStatisticModel(
         id = id,
-        playerId = playerId,
+        userId = userId,
         matchId = matchId,
         clubId = clubId,
         goals = goals,
@@ -24,7 +24,7 @@ fun PlayerMatchStatsDto.toStatisticModel(): PlayerStatisticModel =
 fun PlayerStatisticModel.toStatisticDto(): PlayerMatchStatsDto =
     PlayerMatchStatsDto(
         id = id,
-        playerId = playerId,
+        userId = userId,
         matchId = matchId,
         clubId = clubId,
         goals = goals,

@@ -4,6 +4,7 @@ import cocoapods.FirebaseAuth.FIRAuth
 import cocoapods.FirebaseAuth.FIRAuthDataResult
 import cocoapods.FirebaseAuth.FIRAuthStateDidChangeListenerHandle
 import cocoapods.FirebaseAuth.FIRUser
+import com.kikepb.squadfy.domain.common.AuthErrorCode
 import com.kikepb.squadfy.domain.common.Either
 import com.kikepb.squadfy.domain.common.FailureModel
 import com.kikepb.squadfy.domain.feature.firebase.authentication.model.AuthUserModel
@@ -57,7 +58,37 @@ class AuthRepositoryIosImpl : AuthRepository {
     }
 
     override suspend fun registerWithEmailAndPassword(email: String, password: String, userModel: UserModel): Either<FailureModel, String> {
-        TODO("Not yet implemented")
+        return withContext(Dispatchers.Main) {
+            suspendCancellableCoroutine { continuation ->
+                auth.createUserWithEmail(email = email, password = password) { result, error ->
+                    if (!continuation.isActive) return@createUserWithEmail
+                    when {
+                        error != null -> {
+                            continuation.resume(
+                                Either.Error(FailureModel.AuthError(AuthErrorCode.UNKNOWN_AUTH_ERROR, error.localizedDescription))
+                            )
+                        }
+                        result?.user() == null -> {
+                            continuation.resume(
+                                Either.Error(FailureModel.AuthError(AuthErrorCode.UNKNOWN_AUTH_ERROR, "Usuario nulo"))
+                            )
+                        }
+                        else -> {
+                            val user = result.user()
+                            user.sendEmailVerificationWithCompletion { verificationError ->
+                                if (verificationError != null) {
+                                    continuation.resume(
+                                        Either.Error(FailureModel.GenericError(verificationError.localizedDescription))
+                                    )
+                                } else {
+                                    continuation.resume(Either.Success(user.uid()))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override suspend fun logout() { auth.signOut(null) }

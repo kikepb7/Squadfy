@@ -12,12 +12,14 @@ fun UserDto.toUserModel(): UserModel =
         password = password,
         phoneNumber = phoneNumber,
         imageUrl = imageUrl,
-        playerId = playerId,
         clubId = clubId,
         role = role,
         position = position,
         number = number,
-        createdAt = createdAt
+        rating = rating,
+        birthDate = birthDate,
+        createdAt = createdAt,
+        isActive = isActive
     )
 
 fun UserModel.toUserDto(): UserDto =
@@ -29,10 +31,12 @@ fun UserModel.toUserDto(): UserDto =
         password = password,
         phoneNumber = phoneNumber,
         imageUrl = imageUrl,
-        playerId = playerId,
         clubId = clubId,
         role = role,
         position = position,
         number = number,
-        createdAt = createdAt
+        rating = rating,
+        birthDate = birthDate,
+        createdAt = createdAt,
+        isActive = isActive
     )
